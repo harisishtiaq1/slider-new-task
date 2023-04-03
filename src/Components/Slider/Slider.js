@@ -98,58 +98,58 @@ function AlbumLayout() {
                     }}
                     style={{ cursor: `url(${Backward}), auto` }}
                   ></Box>
-                </Stack>
-                <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
-                  <Grid item md={4} xs={12} sm={12} lg={4}>
-                    <Container
-                      sx={{
-                        ml: {
-                          lg: 12,
-                        },
-                      }}
-                    >
-                      <Typography
-                        component="div"
-                        variant="h3"
-                        color="white"
-                        width={346}
-                        sx={{ fontSize: "50px" }}
+                  <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
+                    <Grid item md={4} xs={12} sm={12} lg={4}>
+                      <Container
+                        sx={{
+                          ml: {
+                            lg: 12,
+                          },
+                        }}
                       >
-                        New Collection
-                      </Typography>
-                      <Typography
-                        component="h1"
-                        variant="h1"
-                        color="white"
-                        width={1200}
-                        sx={{ mt: 5 }}
-                      >
-                        Big!Lets Imagine Giant
-                      </Typography>
-                    </Container>
+                        <Typography
+                          component="div"
+                          variant="h3"
+                          color="white"
+                          width={346}
+                          sx={{ fontSize: "50px" }}
+                        >
+                          New Collection
+                        </Typography>
+                        <Typography
+                          component="h1"
+                          variant="h1"
+                          color="white"
+                          width={1200}
+                          sx={{ mt: 5 }}
+                        >
+                          Big!Lets Imagine Giant
+                        </Typography>
+                      </Container>
+                    </Grid>
                   </Grid>
-                </Grid>
-                <Stack
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    mt: 3,
-                  }}
-                >
-                  <Button
-                    variant="contained"
+                  <Stack
                     sx={{
-                      backgroundColor: "black",
-                      color: "white",
-                      "&:hover": {
-                        backgroundColor: "orange",
-                      },
-                      borderRadius: "10px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      mt: 3,
                     }}
                   >
-                    Check Out
-                  </Button>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "black",
+                        color: "white",
+                        "&:hover": {
+                          backgroundColor: "orange",
+                        },
+                        borderRadius: "10px",
+                      }}
+                    >
+                      Check Out
+                    </Button>
+                  </Stack>
                 </Stack>
               </Box>
             );
