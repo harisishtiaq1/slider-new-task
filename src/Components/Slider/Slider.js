@@ -23,15 +23,16 @@ import "slick-carousel/slick/slick-theme.css";
 const styles = {
   paperContainer: {
     backgroundImage: `url(${background1})`,
-    height: "100vh",
+    height: "80vh",
   },
 };
 const items = [
   {
     paperContainer: {
       backgroundImage: `url(${background1})`,
-      height: "100vh",
+      height:'100vh',
       text: "This is my first Image",
+
     },
   },
   {
@@ -42,13 +43,14 @@ const items = [
     },
   },
   {
-    backgroundImage: background3,
-    alt: "img1",
-    text: "This is my first Image",
+    paperContainer: {
+      backgroundImage: `url(${background3})`,
+      height: "100vh",
+      text: "This is my first Image",
+    },
   },
 ];
 const settings = {
-  dots: true,
   slidesToShow: 1,
   slidesToScroll: 1,
   initialSlide: 0,
@@ -179,6 +181,7 @@ function AlbumLayout() {
           top: "40%",
           left: 20,
           backgroundColor: "lightblue",
+          
         }}
         onClick={() => slide?.current?.slickPrev()}
       >
