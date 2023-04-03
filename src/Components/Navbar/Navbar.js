@@ -11,10 +11,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 import { Container, createTheme, Link, ThemeProvider } from "@mui/material";
 import Logo from "../../assets/logo.svg";
-import Slider from "../Slider/Slider"
+import Slider from "../Slider/Slider";
 const drawerWidth = 200;
 const navItems = [
   "Home",
@@ -76,7 +76,7 @@ function AlbumLayout() {
                     src={Logo}
                   ></Box>
                 </Link>
-                <Box sx={{ display: { xs: "none", sm: "block" },ml:40 }}>
+                <Box sx={{ display: { xs: "none", sm: "block" } }}>
                   <Link
                     sx={{
                       mr: 3,
@@ -145,24 +145,24 @@ function AlbumLayout() {
                     Documents
                   </Link>
                   <IconButton
-                      color="inherit"
-                      aria-label="open drawer"
-                      edge="start"
-                      onClick={handleDrawerToggle}
-                      sx={{ mr: 2,color:"white" }}
-                    >
-                      <SearchIcon/>
-                    </IconButton>
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, color: "white" }}
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  edge="start"
+                  onClick={handleDrawerToggle}
+                  sx={{ mr: 2, color: "white" }}
+                >
+                  <MenuIcon />
+                </IconButton>
                 </Box>
-                    <IconButton
-                      color="inherit"
-                      aria-label="open drawer"
-                      edge="start"
-                      onClick={handleDrawerToggle}
-                      sx={{ mr: 2,color:"white" }}
-                    >
-                      <MenuIcon />
-                    </IconButton>
               </Toolbar>
             </Container>
           </AppBar>
@@ -186,7 +186,7 @@ function AlbumLayout() {
           </Box>
         </Box>
       </Container>
-      <Slider/>
+      <Slider />
     </ThemeProvider>
   );
 }
