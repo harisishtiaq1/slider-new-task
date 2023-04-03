@@ -73,7 +73,7 @@ function AlbumLayout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <Slider ref={slide} {...settings} style={styles.paperContainer}>
+        <Slider ref={slide} {...settings} style={{backgroundImage: `url(${background1})`,cursor: `url(${Backward}), auto`}}>
           {items.map((item) => {
             return (
               <Box
@@ -83,21 +83,7 @@ function AlbumLayout() {
                   height: "100vh",
                 }}
               >
-                <Stack
-                  sx={{
-                    flexGrow: 1,
-                    overflow: "hidden",
-                    position: "relative",
-                    cursor: "none",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      height: 35,
-                      opacity: 1,
-                    }}
-                    style={{ cursor: `url(${Backward}), auto` }}
-                  ></Box>
+
                   <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
                     <Grid item md={4} xs={12} sm={12} lg={4}>
                       <Container
@@ -150,7 +136,6 @@ function AlbumLayout() {
                       Check Out
                     </Button>
                   </Stack>
-                </Stack>
               </Box>
             );
           })}
