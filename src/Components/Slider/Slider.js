@@ -11,11 +11,10 @@ import {
   Stack,
   IconButton,
 } from "@mui/material";
+import Backward from "../../assets/backward.svg";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import background1 from "../../assets/background1.jpg";
-import background2 from "../../assets/background2.jpg";
-import background3 from "../../assets/background3.jpg";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -26,31 +25,21 @@ const styles = {
     height: "80vh",
   },
 };
+
 const items = [
   {
-    paperContainer: {
-      backgroundImage: `url(${background1})`,
-      height:'100vh',
-      text: "This is my first Image",
-
-    },
+    src: background1,
   },
   {
-    paperContainer: {
-      backgroundImage: `url(${background2})`,
-      height: "100vh",
-      text: "This is my first Image",
-    },
+    src: background1,
   },
   {
-    paperContainer: {
-      backgroundImage: `url(${background3})`,
-      height: "100vh",
-      text: "This is my first Image",
-    },
+    src: background1,
   },
 ];
 const settings = {
+  autoplay:true,
+  autoplaySpeed:1500,
   slidesToShow: 1,
   slidesToScroll: 1,
   initialSlide: 0,
@@ -65,9 +54,9 @@ const settings = {
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 2,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
       },
     },
     {
@@ -87,14 +76,16 @@ function AlbumLayout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <Slider ref={slide} {...settings} style={styles.paperContainer}>
+        <Slider ref={slide} {...settings} style={styles.paperContainer} >
           {items.map((item) => {
             return (
               <Box
                 sx={{
                   pt: 6,
                   pb: 6,
+                  height: "100vh",
                 }}
+                // style={{ backgroundImage: `url(${item.src})` }}
               >
                 <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
                   <Grid item md={4} xs={12} sm={12} lg={4}>
@@ -152,6 +143,24 @@ function AlbumLayout() {
             );
           })}
         </Slider>
+        <Stack
+          sx={{
+            flexGrow: 1,
+            overflow: "hidden",
+            position: "relative",
+            cursor: "none",
+          }}
+        >
+          <Box
+            component="img"
+            alt="img"
+            sx={{
+              height: 35,
+              opacity: 1,
+            }}
+            src={Backward}
+          ></Box>
+        </Stack>
       </main>
       <IconButton
         sx={{
@@ -181,7 +190,6 @@ function AlbumLayout() {
           top: "40%",
           left: 20,
           backgroundColor: "lightblue",
-          
         }}
         onClick={() => slide?.current?.slickPrev()}
       >
