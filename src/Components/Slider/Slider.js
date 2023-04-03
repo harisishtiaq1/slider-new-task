@@ -82,8 +82,23 @@ function AlbumLayout() {
                   pb: 6,
                   height: "100vh",
                 }}
-                // style={{ backgroundImage: `url(${item.src})` }}
               >
+                <Stack
+                  sx={{
+                    flexGrow: 1,
+                    overflow: "hidden",
+                    position: "relative",
+                    cursor: "none",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      height: 35,
+                      opacity: 1,
+                    }}
+                    style={{ cursor: `url(${Backward}), auto` }}
+                  ></Box>
+                </Stack>
                 <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
                   <Grid item md={4} xs={12} sm={12} lg={4}>
                     <Container
@@ -140,24 +155,6 @@ function AlbumLayout() {
             );
           })}
         </Slider>
-        <Stack
-          sx={{
-            flexGrow: 1,
-            overflow: "hidden",
-            position: "relative",
-            cursor: "none",
-          }}
-        >
-          <Box
-            component="img"
-            alt="img"
-            sx={{
-              height: 35,
-              opacity: 1,
-            }}
-            src={Backward}
-          ></Box>
-        </Stack>
       </main>
     </ThemeProvider>
   );
