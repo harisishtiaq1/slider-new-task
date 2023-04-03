@@ -9,11 +9,8 @@ import {
   Grid,
   Button,
   Stack,
-  IconButton,
 } from "@mui/material";
 import Backward from "../../assets/backward.svg";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import background1 from "../../assets/background1.jpg";
 import Slider from "react-slick";
 
@@ -38,8 +35,8 @@ const items = [
   },
 ];
 const settings = {
-  autoplay:true,
-  autoplaySpeed:1500,
+  autoplay: true,
+  autoplaySpeed: 1500,
   slidesToShow: 1,
   slidesToScroll: 1,
   initialSlide: 0,
@@ -76,7 +73,7 @@ function AlbumLayout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <Slider ref={slide} {...settings} style={styles.paperContainer} >
+        <Slider ref={slide} {...settings} style={styles.paperContainer}>
           {items.map((item) => {
             return (
               <Box
@@ -162,39 +159,6 @@ function AlbumLayout() {
           ></Box>
         </Stack>
       </main>
-      <IconButton
-        sx={{
-          mr: 2,
-          mt: 0.5,
-          borderRadius: "50%",
-          boxShadow:
-            "3px 3px 5px rgb(0 0 0 / 25%), -3px -3px 5px rgb(255 255 255 / 6%)",
-          position: "absolute",
-          top: "40%",
-          right: 20,
-          backgroundColor: "lightblue",
-        }}
-        onClick={() => slide?.current?.slickNext()}
-      >
-        <ArrowForwardIosIcon />
-      </IconButton>
-
-      <IconButton
-        sx={{
-          mr: 2,
-          mt: 0.5,
-          borderRadius: "50%",
-          boxShadow:
-            "3px 3px 6px rgb(0 0 0 / 25%), -3px -3px 6px rgb(255 255 255 / 6%)",
-          position: "absolute",
-          top: "40%",
-          left: 20,
-          backgroundColor: "lightblue",
-        }}
-        onClick={() => slide?.current?.slickPrev()}
-      >
-        <ArrowBackIosIcon />
-      </IconButton>
     </ThemeProvider>
   );
 }
