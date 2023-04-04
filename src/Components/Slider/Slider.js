@@ -78,7 +78,6 @@ function AlbumLayout() {
     transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
     cursor: `url(${Backward})12 12, auto`,
     transition: "transform 0.3s ease-in-out",
-    zIndex: 99999,
   };
   return (
     <main>
