@@ -1,15 +1,7 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
-import {
-  Container,
-  createTheme,
-  ThemeProvider,
-  Grid,
-  Button,
-  Stack,
-} from "@mui/material";
+import { Container, Grid, Button, Stack } from "@mui/material";
 import Backward from "../../assets/backward.svg";
 import background1 from "../../assets/background1.jpg";
 import Slider from "react-slick";
@@ -19,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 const styles = {
   paperContainer: {
     backgroundImage: `url(${background1})`,
-    
+
     height: "80vh",
   },
 };
@@ -67,14 +59,31 @@ const settings = {
   ],
 };
 function AlbumLayout() {
-  const theme = createTheme();
   const slide = React.useRef(null);
+  const [isFlipped, setIsFlipped] = useState(false);
 
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      const { clientX } = event;
+      const screenWidth = window.innerWidth;
+      const centerThreshold = screenWidth / 2 - 50; // Assuming the image width is 100px
+      setIsFlipped(clientX >= centerThreshold);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+  const style = {
+    transition: "transform 0.5s ease-in-out",
+    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
+    cursor: `url(${Backward}), auto`,
+  };
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-        <Box style={{cursor: `url(${Backward}), auto`,}}>
+    <main>
+      <Box style={style}>
         <Slider ref={slide} {...settings} style={styles.paperContainer}>
           {items.map((item) => {
             return (
@@ -158,9 +167,8 @@ function AlbumLayout() {
             );
           })}
         </Slider>
-        </Box>
-      </main>
-    </ThemeProvider>
+      </Box>
+    </main>
   );
 }
 
