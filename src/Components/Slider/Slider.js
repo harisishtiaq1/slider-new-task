@@ -11,8 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 const styles = {
   paperContainer: {
     backgroundImage: `url(${background1})`,
-    height: "80vh",
-    overflow:"hidden"
+    overflow: "hidden",
   },
 };
 
@@ -69,16 +68,16 @@ function AlbumLayout() {
       setIsFlipped(event.clientX >= centerThreshold);
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
   const style = {
-    transform: isFlipped ? 'scaleX(-1)' : 'scaleX(1)',
-    cursor: `url(${Backward}), auto`,
-    transition: 'transform 0.3s ease-in-out',
+    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
+    cursor: `url(${Backward})12 12, auto`,
+    transition: "transform 0.3s ease-in-out",
     zIndex: 99999,
   };
   return (
@@ -93,24 +92,7 @@ function AlbumLayout() {
                   pb: 6,
                   height: "100vh",
                 }}
-                // style={{ backgroundImage: `url(${item.src})` }}
               >
-                <Stack
-                  sx={{
-                    flexGrow: 1,
-                    overflow: "hidden",
-                    position: "relative",
-                    cursor: "none",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      height: 35,
-                      opacity: 1,
-                    }}
-                    style={{}}
-                  ></Box>
-                </Stack>
                 <Grid container spacing={2} sx={{ display: "flex", mt: 10 }}>
                   <Grid item md={4} xs={12} sm={12} lg={4}>
                     <Container
