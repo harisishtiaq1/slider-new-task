@@ -74,14 +74,16 @@ function AlbumLayout() {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
-  const style = {
-    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
-    cursor: `url(${Backward})12 12, auto`,
-    transition: "transform 0.3s ease-in-out",
-  };
+
   return (
     <main>
-      <Box style={style}>
+      <Box
+        style={{
+          transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
+          transition: "transform 0.3s ease-in-out",
+          cursor: `url(${Backward}) 12 12, auto`,
+        }}
+      >
         <Slider ref={slide} {...settings} style={styles.paperContainer}>
           {items.map((item) => {
             return (
