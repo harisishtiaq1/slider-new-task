@@ -153,15 +153,15 @@ function AlbumLayout() {
                   >
                     <SearchIcon />
                   </IconButton>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2, color: "white" }}
-                >
-                  <MenuIcon />
-                </IconButton>
+                  <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, color: "white" }}
+                  >
+                    <MenuIcon />
+                  </IconButton>
                 </Box>
               </Toolbar>
             </Container>
@@ -186,7 +186,7 @@ function AlbumLayout() {
           </Box>
         </Box>
       </Container>
-      <Slider  />
+      <Slider />
     </ThemeProvider>
   );
 }
