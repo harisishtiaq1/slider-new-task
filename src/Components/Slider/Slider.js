@@ -11,8 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 const styles = {
   paperContainer: {
     backgroundImage: `url(${background1})`,
-
     height: "80vh",
+    overflow:"hidden"
   },
 };
 
@@ -64,22 +64,22 @@ function AlbumLayout() {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      const { clientX } = event;
       const screenWidth = window.innerWidth;
-      const centerThreshold = screenWidth / 2 - 50; // Assuming the image width is 100px
-      setIsFlipped(clientX >= centerThreshold);
+      const centerThreshold = screenWidth / 2;
+      setIsFlipped(event.clientX >= centerThreshold);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
   const style = {
-    transition: "transform 0.5s ease-in-out",
-    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
+    transform: isFlipped ? 'scaleX(-1)' : 'scaleX(1)',
     cursor: `url(${Backward}), auto`,
+    transition: 'transform 0.3s ease-in-out',
+    zIndex: 99999,
   };
   return (
     <main>
