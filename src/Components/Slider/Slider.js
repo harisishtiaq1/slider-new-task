@@ -5,7 +5,6 @@ import { Container, Grid, Button, Stack } from "@mui/material";
 import Backward from "../../assets/backward.svg";
 import background1 from "../../assets/background1.jpg";
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 const styles = {
