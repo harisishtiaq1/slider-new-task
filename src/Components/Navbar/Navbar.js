@@ -186,7 +186,7 @@ function AlbumLayout() {
           </Box>
         </Box>
       </Container>
-      <Slider />
+      <Slider  />
     </ThemeProvider>
   );
 }
