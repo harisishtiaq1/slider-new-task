@@ -62,9 +62,15 @@ function AlbumLayout() {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      const screenWidth = window.innerWidth;
-      const centerThreshold = screenWidth / 2;
-      setIsFlipped(event.clientX >= centerThreshold);
+      const x = event.clientX;
+      const sliderWidth = event.currentTarget.InnerWidth;
+      const center = sliderWidth / 2;
+    
+      if (x < center) {
+        setIsFlipped(true);
+      } else {
+        setIsFlipped(false);
+      }
     };
 
     document.addEventListener("mousemove", handleMouseMove);
@@ -74,8 +80,8 @@ function AlbumLayout() {
     };
   }, []);
   const style = {
-    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
     cursor: `url(${Backward})12 12, auto`,
+    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
     transition: "transform 0.3s ease-in-out",
   };
   return (
