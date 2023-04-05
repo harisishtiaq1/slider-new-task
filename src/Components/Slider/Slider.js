@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Container, Grid, Button, Stack } from "@mui/material";
@@ -56,40 +56,41 @@ const settings = {
     },
   ],
 };
+const cursorStyles = {
+  position: "absolute",
+  width: "50px",
+  height: "50px",
+  backgroundImage: `url(${Backward})`,
+  backgroundSize: "cover",
+  transition: "transform 0.2s",
+};
 function AlbumLayout() {
   const slide = React.useRef(null);
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      const x = event.clientX;
-      const sliderWidth = event.currentTarget.InnerWidth;
-      const center = sliderWidth / 2;
-    
-      if (x < center) {
-        setIsFlipped(true);
-      } else {
-        setIsFlipped(false);
-      }
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-  const style = {
-    cursor: `url(${Backward})12 12, auto`,
-    transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
-    transition: "transform 0.3s ease-in-out",
+  const handleMouseMove = (event) => {
+    setCursorPosition({ x: event.clientX, y: event.clientY });
   };
+
+  const containerCenterX = window.innerWidth / 2;
+  const containerCenterY = window.innerHeight / 2;
+
+  const deltaX = cursorPosition.x - containerCenterX;
+  const deltaY = cursorPosition.y - containerCenterY;
+
+  const angle = Math.atan2(deltaY, deltaX);
+  const degrees = angle * (180 / Math.PI);
+
+  const transform = `translate(${cursorPosition.x - 50}px, ${
+    cursorPosition.y - 50
+  }px) rotate(${degrees}deg)`;
+
   return (
     <main>
-      <Box style={style}>
-        <Slider ref={slide} {...settings} style={styles.paperContainer}>
+        <Slider ref={slide} {...settings} style={styles.paperContainer} onMouseMove={handleMouseMove}>
           {items.map(() => {
             return (
+              <Box style={{ ...cursorStyles, transform }} >
               <Box
                 sx={{
                   pt: 6,
@@ -149,11 +150,11 @@ function AlbumLayout() {
                     Check Out
                   </Button>
                 </Stack>
+          </Box>
               </Box>
             );
           })}
         </Slider>
-      </Box>
     </main>
   );
 }

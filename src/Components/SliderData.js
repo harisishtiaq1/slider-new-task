@@ -1,60 +1,83 @@
-import React, { useState } from 'react';
-import {Grid } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import ArrowBack from '@mui/icons-material/ArrowBack';
-import ArrowForward from '@mui/icons-material/ArrowForward';
+import React, { useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import background1 from "../assets/background1.jpg";
+import Backward from "../assets/backward.svg";
+import { Container, Box } from "@mui/material";
 
-const styles = {
-  slider: {
-    position: 'relative',
-    backgroundImage: `url(${background1})`,
-    backgroundSize: 'cover',
-    height: 500,
-  },
-  cursor: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    color:"white",
-    transform: 'translate(-50%, -50%)',
-    width: 50,
-    height: 50,
-    transition: 'transform .2s ease-out',
-  },
-  cursorFlip: {
-    transform: 'translate(-50%, -50%) scaleX(-1)',
-  },
-  
-  
+const containerStyles = {
+  position: "relative",
+  width: "100%",
+  height: "100vh",
+  backgroundImage: `url(${background1})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
 };
 
-const Slider = () => {
-  const [isCursorFlipped, setIsCursorFlipped] = useState(false);
+const cursorStyles = {
+  position: "absolute",
+  width: "50px",
+  height: "50px",
+  backgroundImage: `url(${Backward})`,
+  backgroundSize: "cover",
+  transition: "transform 0.2s",
+};
+const settings = {
+  autoplay: true,
+  autoplaySpeed: 1500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
 
-  const handleMouseMove = (e) => {
-    const cursorX = e.pageX;
-    const sliderWidth = e.target.offsetWidth;
+export default function App() {
+  const slide = React.useRef(null);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
-    if (cursorX > sliderWidth / 2 && !isCursorFlipped) {
-      setIsCursorFlipped(true);
-    } else if (cursorX < sliderWidth / 2 && isCursorFlipped) {
-      setIsCursorFlipped(false);
-    }
+  const handleMouseMove = (event) => {
+    setCursorPosition({ x: event.clientX, y: event.clientY });
   };
 
-  return (
-    <Grid container justify="center" alignItems="center">
-      <Grid item xs={12} style={styles.slider} onMouseMove={handleMouseMove}>
-        <IconButton style={{ ...styles.cursor, ...(isCursorFlipped && styles.cursorFlip) }}>
-          <ArrowBack />
-        </IconButton>
-        <IconButton style={{ ...styles.cursor, ...(isCursorFlipped || styles.cursorFlip) }}>
-          <ArrowForward />
-        </IconButton>
-      </Grid>
-    </Grid>
-  );
-};
+  const containerCenterX = window.innerWidth / 2;
+  const containerCenterY = window.innerHeight / 2;
 
-export default Slider;
+  const deltaX = cursorPosition.x - containerCenterX;
+  const deltaY = cursorPosition.y - containerCenterY;
+
+  const angle = Math.atan2(deltaY, deltaX);
+  const degrees = angle * (180 / Math.PI);
+
+  const transform = `translate(${cursorPosition.x - 50}px, ${
+    cursorPosition.y - 50
+  }px) rotate(${degrees}deg)`;
+
+  return (
+    <Container style={containerStyles} onMouseMove={handleMouseMove}>
+      <Box style={{ ...cursorStyles, transform }} />
+    </Container>
+  );
+}
